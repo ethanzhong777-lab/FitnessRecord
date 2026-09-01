@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "pages/home/index"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#0b0d0c",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "轻练",
+    "backgroundColor": "#0b0d0c",
+    "backgroundTextStyle": "dark"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
+

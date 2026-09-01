@@ -1,0 +1,23 @@
+<view class="page home">
+  <view class="eyebrow">PROJECT SETUP</view>
+  <view class="title">开发环境已就绪</view>
+  <view class="subtitle">减肥记录与增肌计划小程序</view>
+
+  <view class="card status-card">
+    <view class="status-row">
+      <view class="status-dot"></view>
+      <text class="status-text">阶段 0 · 工程基线</text>
+    </view>
+    <view class="check-list">
+      <view class="check-item" wx:for="{{environmentItems}}" wx:key="*this">
+        <text class="check-mark">✓</text>
+        <text>{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="next-step">
+    下一阶段：确认产品原型与视觉规范
+  </view>
+</view>
+

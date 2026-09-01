@@ -1,0 +1,77 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.eyebrow {
+  margin-bottom: 20rpx;
+  color: #69dc73;
+  font-size: 24rpx;
+  font-weight: 700;
+  letter-spacing: 4rpx;
+}
+
+.title {
+  font-size: 58rpx;
+  font-weight: 750;
+  line-height: 1.2;
+}
+
+.subtitle {
+  margin-top: 16rpx;
+  color: #959d98;
+  font-size: 30rpx;
+}
+
+.status-card {
+  margin-top: 64rpx;
+  padding: 36rpx;
+}
+
+.status-row {
+  display: flex;
+  align-items: center;
+  padding-bottom: 28rpx;
+  border-bottom: 1rpx solid #2a2f2c;
+}
+
+.status-dot {
+  width: 18rpx;
+  height: 18rpx;
+  margin-right: 18rpx;
+  border-radius: 50%;
+  background: #69dc73;
+  box-shadow: 0 0 24rpx rgba(105, 220, 115, 0.55);
+}
+
+.status-text {
+  font-size: 30rpx;
+  font-weight: 650;
+}
+
+.check-list {
+  padding-top: 16rpx;
+}
+
+.check-item {
+  display: flex;
+  align-items: center;
+  padding: 18rpx 0;
+  color: #cbd1cd;
+  font-size: 28rpx;
+}
+
+.check-mark {
+  margin-right: 18rpx;
+  color: #69dc73;
+  font-weight: 700;
+}
+
+.next-step {
+  margin-top: 36rpx;
+  color: #737b76;
+  font-size: 26rpx;
+  text-align: center;
+}
+

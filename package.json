@@ -1,0 +1,14 @@
+{
+  "name": "personal-fitness-miniprogram",
+  "version": "0.1.0",
+  "private": true,
+  "description": "个人减肥与增肌训练记录微信小程序",
+  "scripts": {
+    "check": "node scripts/check-project.mjs",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
+
