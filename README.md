@@ -33,5 +33,4 @@
 npm run check
 ```
 
-详细流程见 [开发流程](docs/DEVELOPMENT.md)，产品范围见 [MVP 需求](docs/PRD.md)，技术边界见 [架构说明](docs/ARCHITECTURE.md)，本机准备状态见 [环境基线](docs/ENVIRONMENT.md)。
-
+后续开发必须遵循 [完整开发流程（主文档）](docs/PROJECT_DEVELOPMENT_PROCESS.md)。产品范围见 [MVP 需求](docs/PRD.md)，技术边界见 [架构说明](docs/ARCHITECTURE.md)，本机准备状态见 [环境基线](docs/ENVIRONMENT.md)。
