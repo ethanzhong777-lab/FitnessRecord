@@ -3,7 +3,7 @@
   "compileType": "miniprogram",
   "libVersion": "3.17.2",
   "miniprogramRoot": "miniprogram/",
-  "projectname": "减肥记录小程序",
+  "projectname": "EthanFitnessRecord",
   "setting": {
     "coverView": true,
     "es6": true,

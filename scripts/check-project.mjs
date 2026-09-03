@@ -11,7 +11,10 @@ const requiredFiles = [
   'miniprogram/pages/home/index.js',
   'miniprogram/pages/home/index.json',
   'miniprogram/pages/home/index.wxml',
-  'miniprogram/pages/home/index.wxss'
+  'miniprogram/pages/home/index.wxss',
+  'docs/PROJECT_DEVELOPMENT_PROCESS.md',
+  'docs/PRD.md',
+  'docs/MVP_SCOPE.md'
 ];
 
 for (const file of requiredFiles) {
@@ -28,4 +31,3 @@ if (!appConfig.pages?.includes('pages/home/index')) {
 }
 
 console.log(`项目检查通过：${requiredFiles.length} 个必要文件存在，JSON 配置有效。`);
-

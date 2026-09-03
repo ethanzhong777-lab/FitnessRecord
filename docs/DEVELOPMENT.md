@@ -2,7 +2,6 @@
 
 本项目完整且唯一的执行顺序见：
 
-**[《减肥记录小程序：完整开发流程》](PROJECT_DEVELOPMENT_PROCESS.md)**
+**[《EthanFitnessRecord：完整开发流程》](PROJECT_DEVELOPMENT_PROCESS.md)**
 
 该主文档定义阶段顺序、交付物、退出条件、质量门禁、Git 规范、测试要求、安全边界和变更流程。后续开发不得使用本文件的旧版本流程或自行跳过阶段。
-
