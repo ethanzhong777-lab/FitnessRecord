@@ -14,7 +14,9 @@ const requiredFiles = [
   'miniprogram/pages/home/index.wxss',
   'docs/PROJECT_DEVELOPMENT_PROCESS.md',
   'docs/PRD.md',
-  'docs/MVP_SCOPE.md'
+  'docs/MVP_SCOPE.md',
+  'docs/INFORMATION_ARCHITECTURE.md',
+  'docs/INTERACTION_STATES.md'
 ];
 
 for (const file of requiredFiles) {

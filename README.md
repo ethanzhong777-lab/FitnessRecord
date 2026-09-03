@@ -2,7 +2,7 @@
 
 一个个人使用、数据本地优先的微信小程序，用于记录体重变化、安排每周增肌训练，并查看健身动作指导。
 
-项目当前处于 **阶段 3：信息架构与交互原型**。环境、模拟器和真机运行链路已经验证通过，MVP 需求已经冻结，当前暂不编写业务功能。
+项目当前处于 **阶段 4：视觉规范与组件设计**。环境、MVP 需求和交互原型均已冻结，当前先完成原创视觉系统和高保真页面，不提前编写业务功能。
 
 ## MVP 范围
 
@@ -33,4 +33,4 @@
 npm run check
 ```
 
-后续开发必须遵循 [完整开发流程（主文档）](docs/PROJECT_DEVELOPMENT_PROCESS.md)。产品范围见 [MVP 需求](docs/PRD.md) 和 [MVP 范围与验收清单](docs/MVP_SCOPE.md)，技术边界见 [架构说明](docs/ARCHITECTURE.md)，本机准备状态见 [环境基线](docs/ENVIRONMENT.md)。
+后续开发必须遵循 [完整开发流程（主文档）](docs/PROJECT_DEVELOPMENT_PROCESS.md)。产品范围见 [MVP 需求](docs/PRD.md) 和 [MVP 范围与验收清单](docs/MVP_SCOPE.md)，交互结构见 [信息架构与交互原型](docs/INFORMATION_ARCHITECTURE.md) 和 [页面状态与危险操作清单](docs/INTERACTION_STATES.md)，技术边界见 [架构说明](docs/ARCHITECTURE.md)，本机准备状态见 [环境基线](docs/ENVIRONMENT.md)。
