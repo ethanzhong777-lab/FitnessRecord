@@ -1,0 +1,20 @@
+# WeChat DevTools local settings
+project.private.config.json
+
+# Dependencies and generated output
+node_modules/
+miniprogram_npm/
+dist/
+coverage/
+
+# OS and editor files
+.DS_Store
+.idea/
+.vscode/
+
+# Logs and local secrets
+*.log
+.env
+.env.*
+!.env.example
+
