@@ -1,0 +1,583 @@
+<style>
+  #ef-stage4-review {
+    --ef-bg: #0a0f0d;
+    --ef-surface: #121a16;
+    --ef-raised: #18231d;
+    --ef-primary: #61e786;
+    --ef-primary-pressed: #49c96e;
+    --ef-primary-soft: rgba(97, 231, 134, 0.14);
+    --ef-text: #f4f8f5;
+    --ef-text-secondary: #9aac9f;
+    --ef-border: rgba(244, 248, 245, 0.1);
+    --ef-warning: #f6c85f;
+    --ef-danger: #ff6b6b;
+    --ef-plot: #27352e;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    padding: 8px 0 24px;
+    color: var(--ef-text);
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Segoe UI", sans-serif;
+  }
+
+  #ef-stage4-review * { box-sizing: border-box; }
+
+  #ef-stage4-review .ef-phone {
+    width: min(100%, 393px);
+    overflow: hidden;
+    border: 1px solid var(--ef-border);
+    border-radius: 32px;
+    background: var(--ef-bg);
+    box-shadow: 0 28px 70px rgba(0, 0, 0, 0.32);
+  }
+
+  #ef-stage4-review .ef-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 44px;
+    padding: 0 20px;
+    color: var(--ef-text-secondary);
+    font-size: 12px;
+  }
+
+  #ef-stage4-review .ef-status-capsule {
+    width: 70px;
+    height: 24px;
+    border: 1px solid var(--ef-border);
+    border-radius: 14px;
+    background: var(--ef-surface);
+  }
+
+  #ef-stage4-review .ef-screen {
+    min-height: 672px;
+    padding: 8px 16px 24px;
+  }
+
+  #ef-stage4-review .ef-page[hidden] { display: none; }
+
+  #ef-stage4-review .ef-overline,
+  #ef-stage4-review .ef-caption {
+    color: var(--ef-text-secondary);
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  #ef-stage4-review .ef-title-row,
+  #ef-stage4-review .ef-row,
+  #ef-stage4-review .ef-card-head,
+  #ef-stage4-review .ef-list-item,
+  #ef-stage4-review .ef-setting-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  #ef-stage4-review h2,
+  #ef-stage4-review h3,
+  #ef-stage4-review p { margin: 0; }
+
+  #ef-stage4-review h2 {
+    margin-top: 3px;
+    color: var(--ef-text);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 26px;
+  }
+
+  #ef-stage4-review h3 {
+    color: var(--ef-text);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22px;
+  }
+
+  #ef-stage4-review .ef-section { margin-top: 20px; }
+
+  #ef-stage4-review .ef-card {
+    margin-top: 10px;
+    padding: 16px;
+    border: 1px solid var(--ef-border);
+    border-radius: 16px;
+    background: var(--ef-surface);
+  }
+
+  #ef-stage4-review .ef-weight {
+    margin-top: 8px;
+    font-variant-numeric: tabular-nums;
+    font-size: 38px;
+    font-weight: 500;
+    line-height: 44px;
+    letter-spacing: -1.2px;
+  }
+
+  #ef-stage4-review .ef-weight small {
+    margin-left: 4px;
+    color: var(--ef-text-secondary);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  #ef-stage4-review .ef-pill,
+  #ef-stage4-review .ef-tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 4px 9px;
+    border-radius: 999px;
+    background: var(--ef-primary-soft);
+    color: var(--ef-primary);
+    font-size: 12px;
+    line-height: 18px;
+    white-space: nowrap;
+  }
+
+  #ef-stage4-review .ef-tag.neutral {
+    background: var(--ef-raised);
+    color: var(--ef-text-secondary);
+  }
+
+  #ef-stage4-review .ef-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    width: 100%;
+    margin-top: 16px;
+    border: 0;
+    border-radius: 12px;
+    background: var(--ef-primary);
+    color: var(--ef-bg);
+    font: inherit;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  #ef-stage4-review .ef-action:active { background: var(--ef-primary-pressed); }
+
+  #ef-stage4-review .ef-link {
+    min-height: 44px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--ef-primary);
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  #ef-stage4-review .ef-sparkline { width: 100%; height: 74px; margin-top: 10px; }
+  #ef-stage4-review .ef-sparkline .grid { stroke: var(--ef-plot); stroke-width: 1; }
+  #ef-stage4-review .ef-sparkline .target { stroke: var(--ef-text-secondary); stroke-width: 1; stroke-dasharray: 4 5; }
+  #ef-stage4-review .ef-sparkline .line { fill: none; stroke: var(--ef-primary); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+  #ef-stage4-review .ef-sparkline .dot { fill: var(--ef-bg); stroke: var(--ef-primary); stroke-width: 2; }
+  #ef-stage4-review .ef-sparkline text { fill: var(--ef-text-secondary); font-size: 9px; }
+
+  #ef-stage4-review .ef-training {
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--ef-border);
+  }
+
+  #ef-stage4-review .ef-training:last-child { border-bottom: 0; }
+
+  #ef-stage4-review .ef-training-index,
+  #ef-stage4-review .ef-thumb {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: var(--ef-primary-soft);
+    color: var(--ef-primary);
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  #ef-stage4-review .ef-training-title { font-size: 14px; line-height: 20px; }
+
+  #ef-stage4-review .ef-segments {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    padding: 4px;
+    margin-top: 16px;
+    border-radius: 12px;
+    background: var(--ef-surface);
+  }
+
+  #ef-stage4-review .ef-segment {
+    min-height: 38px;
+    border: 0;
+    border-radius: 9px;
+    background: transparent;
+    color: var(--ef-text-secondary);
+    font: inherit;
+    font-size: 12px;
+  }
+
+  #ef-stage4-review .ef-segment.active {
+    background: var(--ef-raised);
+    color: var(--ef-text);
+  }
+
+  #ef-stage4-review .ef-chart-card { padding: 16px 10px 10px; }
+  #ef-stage4-review .ef-chart-card .ef-sparkline { height: 190px; }
+
+  #ef-stage4-review .ef-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  #ef-stage4-review .ef-stat {
+    padding: 12px;
+    border-radius: 12px;
+    background: var(--ef-surface);
+  }
+
+  #ef-stage4-review .ef-stat strong {
+    display: block;
+    margin-top: 4px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  #ef-stage4-review .ef-week {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-top: 16px;
+  }
+
+  #ef-stage4-review .ef-day {
+    display: grid;
+    place-items: center;
+    min-height: 54px;
+    border: 0;
+    border-radius: 12px;
+    background: transparent;
+    color: var(--ef-text-secondary);
+    font: inherit;
+    font-size: 11px;
+  }
+
+  #ef-stage4-review .ef-day span {
+    display: block;
+    margin-top: 2px;
+    color: var(--ef-text);
+    font-size: 13px;
+  }
+
+  #ef-stage4-review .ef-day.active { background: var(--ef-primary); color: var(--ef-bg); }
+  #ef-stage4-review .ef-day.active span { color: var(--ef-bg); }
+  #ef-stage4-review .ef-day.has-plan::after { content: ""; width: 4px; height: 4px; margin-top: 3px; border-radius: 50%; background: var(--ef-primary); }
+  #ef-stage4-review .ef-day.active::after { background: var(--ef-bg); }
+
+  #ef-stage4-review .ef-routine-card {
+    position: relative;
+    overflow: hidden;
+    padding-left: 20px;
+  }
+
+  #ef-stage4-review .ef-routine-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 4px;
+    background: var(--ef-primary);
+  }
+
+  #ef-stage4-review .ef-routine-meta,
+  #ef-stage4-review .ef-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+  }
+
+  #ef-stage4-review .ef-search {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: 16px;
+    padding: 0 14px;
+    border: 1px solid var(--ef-border);
+    border-radius: 12px;
+    background: var(--ef-surface);
+    color: var(--ef-text-secondary);
+    font-size: 14px;
+  }
+
+  #ef-stage4-review .ef-filter-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    overflow: hidden;
+  }
+
+  #ef-stage4-review .ef-filter {
+    min-height: 36px;
+    padding: 0 12px;
+    border: 1px solid var(--ef-border);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--ef-text-secondary);
+    font: inherit;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  #ef-stage4-review .ef-filter.active { border-color: transparent; background: var(--ef-primary-soft); color: var(--ef-primary); }
+
+  #ef-stage4-review .ef-exercise {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr) 44px;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--ef-border);
+  }
+
+  #ef-stage4-review .ef-exercise:last-child { border-bottom: 0; }
+  #ef-stage4-review .ef-exercise .ef-thumb { width: 72px; height: 58px; background: var(--ef-raised); color: var(--ef-text-secondary); }
+  #ef-stage4-review .ef-heart { color: var(--ef-primary); text-align: center; }
+
+  #ef-stage4-review .ef-settings-group { margin-top: 16px; overflow: hidden; border: 1px solid var(--ef-border); border-radius: 16px; background: var(--ef-surface); }
+  #ef-stage4-review .ef-setting-row { min-height: 58px; padding: 0 16px; border-bottom: 1px solid var(--ef-border); font-size: 14px; }
+  #ef-stage4-review .ef-setting-row:last-child { border-bottom: 0; }
+  #ef-stage4-review .ef-setting-value { color: var(--ef-text-secondary); font-size: 12px; }
+  #ef-stage4-review .ef-danger { color: var(--ef-danger); }
+
+  #ef-stage4-review .ef-tabbar {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    min-height: 76px;
+    padding: 6px 8px 12px;
+    border-top: 1px solid var(--ef-border);
+    background: var(--ef-surface);
+  }
+
+  #ef-stage4-review .ef-tab {
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: 4px;
+    min-width: 0;
+    min-height: 56px;
+    border: 0;
+    background: transparent;
+    color: var(--ef-text-secondary);
+    font: inherit;
+    font-size: 11px;
+    cursor: pointer;
+  }
+
+  #ef-stage4-review .ef-tab-glyph {
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    color: inherit;
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  #ef-stage4-review .ef-tab.active { color: var(--ef-primary); }
+
+  #ef-stage4-review .ef-sheet-backdrop {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: end;
+    background: rgba(0, 0, 0, 0.62);
+  }
+
+  #ef-stage4-review .ef-phone-body { position: relative; }
+  #ef-stage4-review .ef-sheet-backdrop.open { display: flex; }
+  #ef-stage4-review .ef-sheet { width: 100%; padding: 22px 16px 24px; border-radius: 20px 20px 0 0; background: var(--ef-raised); box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.32); }
+  #ef-stage4-review .ef-label { display: block; margin-top: 18px; color: var(--ef-text-secondary); font-size: 12px; }
+  #ef-stage4-review .ef-input-wrap { display: flex; align-items: baseline; margin-top: 8px; border-bottom: 1px solid var(--ef-primary); }
+  #ef-stage4-review .ef-input { min-width: 0; width: 100%; padding: 8px 0; border: 0; background: transparent; color: var(--ef-text); font: inherit; font-size: 32px; font-weight: 500; }
+  #ef-stage4-review .ef-input-unit { color: var(--ef-text-secondary); }
+  #ef-stage4-review .ef-sheet-actions { display: grid; grid-template-columns: 1fr 2fr; gap: 10px; margin-top: 22px; }
+  #ef-stage4-review .ef-sheet-actions .ef-action { margin-top: 0; }
+  #ef-stage4-review .ef-cancel { min-height: 48px; border: 0; border-radius: 12px; background: var(--ef-surface); color: var(--ef-text); font: inherit; }
+
+  @media (max-width: 380px) {
+    #ef-stage4-review .ef-phone { border-radius: 24px; }
+    #ef-stage4-review .ef-screen { padding-inline: 14px; }
+    #ef-stage4-review .ef-stats { gap: 6px; }
+    #ef-stage4-review .ef-stat { padding: 10px 8px; }
+  }
+</style>
+
+<div id="ef-stage4-review">
+  <section class="ef-phone" aria-label="EthanFitnessRecord 阶段 4 高保真视觉稿">
+    <header class="ef-status" aria-hidden="true">
+      <span>09:41</span>
+      <span class="ef-status-capsule"></span>
+    </header>
+
+    <div class="ef-phone-body">
+      <main class="ef-screen">
+        <section class="ef-page" data-page="home" aria-label="首页视觉稿">
+          <div class="ef-overline">9 月 4 日 · 星期五</div>
+          <div class="ef-title-row"><h2>晚上好，Ethan</h2><span class="ef-pill">今日 1/3</span></div>
+
+          <div class="ef-card">
+            <div class="ef-card-head"><span class="ef-caption">当前体重</span><span class="ef-caption">目标 70.0 kg</span></div>
+            <div class="ef-weight">73.8<small>kg</small></div>
+            <div class="ef-caption">较上次 −0.3 kg · 今天 07:28</div>
+            <button class="ef-action" type="button" data-open-sheet>记录体重</button>
+          </div>
+
+          <div class="ef-section">
+            <div class="ef-card-head"><h3>最近趋势</h3><button class="ef-link" type="button" data-go="trend">查看全部</button></div>
+            <div class="ef-card">
+              <div class="ef-row"><span class="ef-caption">近 7 天</span><span class="ef-pill">−0.8 kg</span></div>
+              <svg class="ef-sparkline" viewBox="0 0 320 74" role="img" aria-label="近七天体重从 74.6 千克降至 73.8 千克">
+                <line class="grid" x1="4" y1="56" x2="316" y2="56" />
+                <path class="line" d="M8 18 C35 17 52 31 80 29 S126 40 154 38 S199 31 226 43 S274 46 312 55" />
+                <circle class="dot" cx="8" cy="18" r="3.5" /><circle class="dot" cx="80" cy="29" r="3.5" /><circle class="dot" cx="154" cy="38" r="3.5" /><circle class="dot" cx="226" cy="43" r="3.5" /><circle class="dot" cx="312" cy="55" r="3.5" />
+              </svg>
+            </div>
+          </div>
+
+          <div class="ef-section">
+            <div class="ef-card-head"><h3>今日训练</h3><span class="ef-caption">2 个组合</span></div>
+            <div class="ef-card">
+              <div class="ef-training"><span class="ef-training-index">01</span><div><div class="ef-training-title">上肢推力</div><div class="ef-caption">4 个动作 · 约 35 分钟</div></div><span class="ef-caption">›</span></div>
+              <div class="ef-training"><span class="ef-training-index">02</span><div><div class="ef-training-title">核心稳定</div><div class="ef-caption">3 个动作 · 约 18 分钟</div></div><span class="ef-caption">›</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="ef-page" data-page="trend" aria-label="趋势页视觉稿" hidden>
+          <div class="ef-overline">体重趋势</div>
+          <div class="ef-title-row"><h2>保持真实，不放大波动</h2><span class="ef-pill">−2.4 kg</span></div>
+          <div class="ef-segments" aria-label="时间范围"><button class="ef-segment active" type="button">7 天</button><button class="ef-segment" type="button">30 天</button><button class="ef-segment" type="button">3 个月</button><button class="ef-segment" type="button">全部</button></div>
+          <div class="ef-card ef-chart-card">
+            <div class="ef-row"><div><span class="ef-caption">当前</span><div class="ef-weight">73.8<small>kg</small></div></div><span class="ef-caption">目标线 70.0 kg</span></div>
+            <svg class="ef-sparkline" viewBox="0 0 330 190" role="img" aria-label="七天体重折线图，包含每一次测量点和目标体重线">
+              <line class="grid" x1="32" y1="24" x2="320" y2="24" /><line class="grid" x1="32" y1="76" x2="320" y2="76" /><line class="grid" x1="32" y1="128" x2="320" y2="128" />
+              <line class="target" x1="32" y1="150" x2="320" y2="150" /><text x="248" y="145">目标 70.0</text>
+              <path class="line" d="M34 38 C55 35 67 54 87 52 S116 70 135 68 S162 60 183 80 S218 86 239 101 S275 94 296 116 S309 118 318 126" />
+              <circle class="dot" cx="34" cy="38" r="4" /><circle class="dot" cx="87" cy="52" r="4" /><circle class="dot" cx="135" cy="68" r="4" /><circle class="dot" cx="183" cy="80" r="4" /><circle class="dot" cx="239" cy="101" r="4" /><circle class="dot" cx="296" cy="116" r="4" /><circle class="dot" cx="318" cy="126" r="4" />
+              <text x="31" y="177">8/29</text><text x="172" y="177">9/1</text><text x="296" y="177">今天</text>
+            </svg>
+          </div>
+          <div class="ef-stats">
+            <div class="ef-stat"><span class="ef-caption">最高</span><strong>74.6 kg</strong></div>
+            <div class="ef-stat"><span class="ef-caption">最低</span><strong>73.8 kg</strong></div>
+            <div class="ef-stat"><span class="ef-caption">记录</span><strong>9 次</strong></div>
+          </div>
+          <div class="ef-section"><div class="ef-card-head"><h3>历史记录</h3><button class="ef-link" type="button">管理</button></div><div class="ef-card"><div class="ef-list-item"><div><div class="ef-training-title">今天 07:28</div><span class="ef-caption">晨起 · 空腹</span></div><strong>73.8 kg</strong></div></div></div>
+        </section>
+
+        <section class="ef-page" data-page="plan" aria-label="计划页视觉稿" hidden>
+          <div class="ef-overline">9 月 1 日 — 9 月 7 日</div>
+          <div class="ef-title-row"><h2>本周计划</h2><button class="ef-link" type="button">复制上周</button></div>
+          <div class="ef-week" aria-label="本周日期">
+            <button class="ef-day has-plan" type="button">一<span>1</span></button><button class="ef-day" type="button">二<span>2</span></button><button class="ef-day has-plan" type="button">三<span>3</span></button><button class="ef-day" type="button">四<span>4</span></button><button class="ef-day active has-plan" type="button">五<span>5</span></button><button class="ef-day" type="button">六<span>6</span></button><button class="ef-day has-plan" type="button">日<span>7</span></button>
+          </div>
+          <div class="ef-section"><div class="ef-card-head"><div><span class="ef-caption">星期五</span><h3>上肢与核心</h3></div><span class="ef-pill">2/2</span></div></div>
+          <div class="ef-card ef-routine-card">
+            <div class="ef-card-head"><h3>上肢推力</h3><span class="ef-caption">35 分钟</span></div>
+            <div class="ef-routine-meta"><span class="ef-tag neutral">俯卧撑 4 × 12</span><span class="ef-tag neutral">肩推 3 × 10</span><span class="ef-tag neutral">再 2 个动作</span></div>
+          </div>
+          <div class="ef-card ef-routine-card">
+            <div class="ef-card-head"><h3>核心稳定</h3><span class="ef-caption">18 分钟</span></div>
+            <div class="ef-routine-meta"><span class="ef-tag neutral">平板支撑 3 × 45 秒</span><span class="ef-tag neutral">死虫 3 × 12</span></div>
+          </div>
+          <div class="ef-section"><div class="ef-card"><div class="ef-card-head"><div><h3>今天准备好了吗？</h3><span class="ef-caption">按自己的状态完成，疼痛时停止训练。</span></div></div><button class="ef-action" type="button">开始今日训练</button></div></div>
+        </section>
+
+        <section class="ef-page" data-page="exercise" aria-label="动作库视觉稿" hidden>
+          <div class="ef-overline">动作库</div>
+          <div class="ef-title-row"><h2>找到适合今天的动作</h2><span class="ef-pill">已收藏 6</span></div>
+          <div class="ef-search">⌕&nbsp;&nbsp;搜索中文动作名称</div>
+          <div class="ef-filter-row" aria-label="身体部位筛选"><button class="ef-filter active" type="button">全部</button><button class="ef-filter" type="button">胸</button><button class="ef-filter" type="button">背</button><button class="ef-filter" type="button">腿</button><button class="ef-filter" type="button">核心</button></div>
+          <div class="ef-section"><div class="ef-card-head"><h3>全部动作</h3><span class="ef-caption">30 个</span></div><div class="ef-card">
+            <div class="ef-exercise"><span class="ef-thumb">动作图</span><div><div class="ef-training-title">标准俯卧撑</div><div class="ef-tags"><span class="ef-tag neutral">胸</span><span class="ef-tag neutral">徒手</span></div></div><span class="ef-heart">♥</span></div>
+            <div class="ef-exercise"><span class="ef-thumb">动作图</span><div><div class="ef-training-title">高脚杯深蹲</div><div class="ef-tags"><span class="ef-tag neutral">腿</span><span class="ef-tag neutral">哑铃</span></div></div><span class="ef-caption">♡</span></div>
+            <div class="ef-exercise"><span class="ef-thumb">动作图</span><div><div class="ef-training-title">死虫</div><div class="ef-tags"><span class="ef-tag neutral">核心</span><span class="ef-tag neutral">徒手</span></div></div><span class="ef-heart">♥</span></div>
+            <div class="ef-exercise"><span class="ef-thumb">动作图</span><div><div class="ef-training-title">单臂哑铃划船</div><div class="ef-tags"><span class="ef-tag neutral">背</span><span class="ef-tag neutral">哑铃</span></div></div><span class="ef-caption">♡</span></div>
+          </div></div>
+        </section>
+
+        <section class="ef-page" data-page="settings" aria-label="设置页视觉稿" hidden>
+          <div class="ef-overline">EthanFitnessRecord</div>
+          <div class="ef-title-row"><h2>设置与数据</h2><span class="ef-pill">仅存本机</span></div>
+          <div class="ef-settings-group">
+            <div class="ef-setting-row"><span>目标体重</span><span class="ef-setting-value">70.0 kg&nbsp;&nbsp;›</span></div>
+            <div class="ef-setting-row"><span>重量单位</span><span class="ef-setting-value">kg&nbsp;&nbsp;›</span></div>
+          </div>
+          <div class="ef-section"><span class="ef-caption">数据管理</span><div class="ef-settings-group">
+            <div class="ef-setting-row"><div><div>导出备份</div><span class="ef-caption">生成带版本号的 JSON 文件</span></div><span class="ef-setting-value">›</span></div>
+            <div class="ef-setting-row"><div><div>导入并完整恢复</div><span class="ef-caption">校验摘要后再替换本机数据</span></div><span class="ef-setting-value">›</span></div>
+            <div class="ef-setting-row"><span>分类清空</span><span class="ef-setting-value">›</span></div>
+            <div class="ef-setting-row"><span class="ef-danger">清空全部个人数据</span><span class="ef-danger">›</span></div>
+          </div></div>
+          <div class="ef-section"><div class="ef-card"><h3>隐私与安全</h3><p class="ef-caption" style="margin-top:8px">体重与训练数据默认只保存在这台手机。训练建议仅供一般健身参考，若出现明显疼痛、眩晕或呼吸困难，请立即停止并寻求专业帮助。</p></div></div>
+        </section>
+      </main>
+
+      <nav class="ef-tabbar" aria-label="主导航">
+        <button class="ef-tab active" type="button" data-page-target="home"><span class="ef-tab-glyph">⌂</span><span>首页</span></button>
+        <button class="ef-tab" type="button" data-page-target="trend"><span class="ef-tab-glyph">∿</span><span>趋势</span></button>
+        <button class="ef-tab" type="button" data-page-target="plan"><span class="ef-tab-glyph">□</span><span>计划</span></button>
+        <button class="ef-tab" type="button" data-page-target="exercise"><span class="ef-tab-glyph">◇</span><span>动作</span></button>
+        <button class="ef-tab" type="button" data-page-target="settings"><span class="ef-tab-glyph">⚙</span><span>设置</span></button>
+      </nav>
+
+      <div class="ef-sheet-backdrop" data-sheet aria-hidden="true">
+        <section class="ef-sheet" aria-label="记录体重弹层">
+          <div class="ef-card-head"><div><span class="ef-caption">今天 · 第 2/3 次</span><h2>记录体重</h2></div></div>
+          <label class="ef-label" for="ef-weight-input">体重</label>
+          <div class="ef-input-wrap"><input class="ef-input" id="ef-weight-input" type="text" inputmode="decimal" value="73.8" aria-label="体重"><span class="ef-input-unit">kg</span></div>
+          <label class="ef-label">记录时间</label>
+          <div class="ef-setting-row" style="padding:0"><span>2026 年 9 月 4 日</span><span class="ef-setting-value">20:16&nbsp;&nbsp;›</span></div>
+          <div class="ef-sheet-actions"><button class="ef-cancel" type="button" data-close-sheet>取消</button><button class="ef-action" type="button">保存记录</button></div>
+        </section>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+  (() => {
+    const root = document.getElementById('ef-stage4-review');
+    const pages = [...root.querySelectorAll('[data-page]')];
+    const tabs = [...root.querySelectorAll('[data-page-target]')];
+    const sheet = root.querySelector('[data-sheet]');
+
+    function showPage(name) {
+      pages.forEach((page) => { page.hidden = page.dataset.page !== name; });
+      tabs.forEach((tab) => {
+        const active = tab.dataset.pageTarget === name;
+        tab.classList.toggle('active', active);
+        tab.setAttribute('aria-current', active ? 'page' : 'false');
+      });
+      sheet.classList.remove('open');
+      sheet.setAttribute('aria-hidden', 'true');
+    }
+
+    tabs.forEach((tab) => tab.addEventListener('click', () => showPage(tab.dataset.pageTarget)));
+    root.querySelectorAll('[data-go]').forEach((button) => button.addEventListener('click', () => showPage(button.dataset.go)));
+    root.querySelector('[data-open-sheet]').addEventListener('click', () => {
+      sheet.classList.add('open');
+      sheet.setAttribute('aria-hidden', 'false');
+    });
+    root.querySelector('[data-close-sheet]').addEventListener('click', () => {
+      sheet.classList.remove('open');
+      sheet.setAttribute('aria-hidden', 'true');
+    });
+  })();
+</script>

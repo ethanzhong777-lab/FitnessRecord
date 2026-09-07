@@ -16,7 +16,10 @@ const requiredFiles = [
   'docs/PRD.md',
   'docs/MVP_SCOPE.md',
   'docs/INFORMATION_ARCHITECTURE.md',
-  'docs/INTERACTION_STATES.md'
+  'docs/INTERACTION_STATES.md',
+  'docs/VISUAL_DESIGN_SYSTEM.md',
+  'docs/ASSET_LICENSES.md',
+  'docs/stage-4-visual-review.html'
 ];
 
 for (const file of requiredFiles) {

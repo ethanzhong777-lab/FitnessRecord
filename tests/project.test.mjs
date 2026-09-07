@@ -47,5 +47,22 @@ test('阶段 3 信息架构与交互原型已经冻结', async () => {
   const architecture = await readFile('docs/INFORMATION_ARCHITECTURE.md', 'utf8');
   const process = await readFile('docs/PROJECT_DEVELOPMENT_PROCESS.md', 'utf8');
   assert.match(architecture, /阶段 3 冻结：是（2026-09-04）/);
-  assert.match(process, /当前阶段 \| 阶段 4：视觉规范与组件设计/);
+  assert.match(process, /4 \| 视觉规范与组件设计 \| 已完成/);
+});
+
+test('阶段 4 视觉规范和素材登记表已经冻结', async () => {
+  const design = await readFile('docs/VISUAL_DESIGN_SYSTEM.md', 'utf8');
+  const assets = await readFile('docs/ASSET_LICENSES.md', 'utf8');
+  const review = await readFile('docs/stage-4-visual-review.html', 'utf8');
+  assert.match(design, /固定深色主题/);
+  assert.match(design, /#61E786/);
+  assert.match(design, /最小触控区域/);
+  assert.match(design, /阶段 4 冻结：是（2026-09-07）/);
+  assert.match(design, /用户确认：是/);
+  assert.match(await readFile('docs/PROJECT_DEVELOPMENT_PROCESS.md', 'utf8'), /阶段 4 验收记录/);
+  assert.match(assets, /未登记或许可证不明确的素材不得进入正式版本/);
+  for (const page of ['home', 'trend', 'plan', 'exercise', 'settings']) {
+    assert.match(review, new RegExp(`data-page="${page}"`));
+  }
+  assert.doesNotMatch(review, /https?:\/\//);
 });
